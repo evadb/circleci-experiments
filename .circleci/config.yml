@@ -4,7 +4,7 @@
 #
 version: 2
 jobs:
-  build_server:
+  api:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
@@ -41,7 +41,7 @@ jobs:
           command: yarn start
           background: true
 
-  build:
+  ui:
     docker:
       # specify the version you desire here
       - image: cypress/base:6
@@ -77,5 +77,12 @@ jobs:
 
       # Run tests
       - run: yarn test
+
+workflows:
+  version: 2
+  api_and_ui:
+    jobs:
+      - api
+      - ui
 
 
