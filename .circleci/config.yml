@@ -33,10 +33,10 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
       
       # Build files 
-      - run: yarn build
+      - run: yarn start
 
       # run server in background
-      - run: 
-          command: yarn start
-          background: true
+      #- run: 
+      #    command: yarn start
+      #    background: true
 
