@@ -4,7 +4,8 @@
   "description": "Hopefully this will become an example application that serves NRCAN data",
   "main": "index.js",
   "scripts": {
-    "precommit": "lint-staged"
+    "precommit": "lint-staged",
+    "start": "echo huzzah"
   },
   "repository": {
     "type": "git",
