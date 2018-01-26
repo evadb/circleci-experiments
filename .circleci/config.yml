@@ -41,7 +41,7 @@ jobs:
           command: yarn start
           background: true
 
-  build_ui:
+  build:
     docker:
       # specify the version you desire here
       - image: cypress/base:6
