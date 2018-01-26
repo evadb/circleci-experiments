@@ -13,7 +13,7 @@ jobs:
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
 
-    working_directory: ~/repo/api
+    working_directory: ~/repo/ui
 
     steps:
       - checkout:
@@ -33,11 +33,9 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       
-      # Build files 
-      - run: yarn build
+      # Run client 
+      - run: yarn run
 
-      # run server in background
-      - run: 
-          command: yarn start
-          background: true
+      # Run tests
+
 
