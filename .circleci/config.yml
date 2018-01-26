@@ -33,8 +33,8 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
       
-      # Run client 
-      - run: yarn run
+      # Start client 
+      - run: yarn start
 
       # Run tests
 
