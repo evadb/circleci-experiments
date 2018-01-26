@@ -31,7 +31,10 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-        
+      
+      # Build files 
+      - run: yarn build
+
       # run server in background
       - run: 
           command: yarn start
