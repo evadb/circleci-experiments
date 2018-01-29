@@ -75,13 +75,20 @@ jobs:
           command: yarn start
           background: true
 
+      # Make sure server is started
+      - run:
+          shell: /bin/sh
+          command: |
+            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:3001/graphql
+            :
+
       # Run tests
       - run: yarn test
 
       # Store results
       - store_artifacts:
           path: cypress/videos
-          
+
       - store_artifacts:
           path: cypress/screenshots
 
