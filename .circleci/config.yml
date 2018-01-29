@@ -4,45 +4,10 @@
 #
 version: 2
 jobs:
-  api:
+  build:
     docker:
       # specify the version you desire here
       - image: circleci/node:7.10
-      
-      # Specify service dependencies here if necessary
-      # CircleCI maintains a library of pre-built images
-      # documented at https://circleci.com/docs/2.0/circleci-images/
-
-    working_directory: ~/repo/api
-
-    steps:
-      - checkout:
-          path: ~/repo
-
-      # Download and cache dependencies
-      - restore_cache:
-          keys:
-          - v1-dependencies-{{ checksum "package.json" }}
-          # fallback to using the latest cache if no exact match is found
-          - v1-dependencies-
-
-      - run: yarn install
-
-      - save_cache:
-          paths:
-            - node_modules
-          key: v1-dependencies-{{ checksum "package.json" }}
-      
-      # Build files 
-      - run: yarn build
-
-      # Start server
-      - run: yarn start
-
-  ui:
-    docker:
-      # specify the version you desire here
-      - image: cypress/base:6
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -68,38 +33,7 @@ jobs:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run server in background
-      #- run: 
-      #    command: yarn start-server
-      #     background: true
-      
-      # Start client 
-      - run: 
-          command: yarn start
-          background: true
-
-      # Make sure server is started
-      - run:
-          shell: /bin/sh
-          command: |
-            wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 10 http://localhost:3001/graphql
-            :
-
       # Run tests
       - run: yarn test
-
-      # Store results
-      - store_artifacts:
-          path: cypress/videos
-
-      - store_artifacts:
-          path: cypress/screenshots
-
-workflows:
-  version: 2
-  api_and_ui:
-    jobs:
-      - api
-      - ui
 
 
