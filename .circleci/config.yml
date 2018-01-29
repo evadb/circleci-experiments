@@ -36,6 +36,9 @@ jobs:
       # Build files 
       - run: yarn build
 
+      # Start server
+      - run: yarn start
+
   ui:
     docker:
       # specify the version you desire here
@@ -66,9 +69,9 @@ jobs:
           key: v1-dependencies-{{ checksum "package.json" }}
 
       # run server in background
-      - run: 
-          command: yarn start-server
-          background: true
+      #- run: 
+      #    command: yarn start-server
+      #     background: true
       
       # Start client 
       - run: 
