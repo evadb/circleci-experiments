@@ -83,8 +83,6 @@ workflows:
   api_and_ui:
     jobs:
       - api
-      - ui:
-        requires:
-          - api
+      - ui
 
 
