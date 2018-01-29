@@ -19,13 +19,7 @@ class Home extends React.Component {
     let { client } = this.props
 
     let response = await client.query({
-      query: gql`
-        query evaluationQuery($UID: Int!, $PCode: String!) {
-          evaluationsFor(account: $UID, postalCode: $PCode) {
-            yearBuilt
-          }
-        }
-      `,
+      query: evaluationQuery,
       variables: {
         UID: event.target.elements.UID.value,
         PCode: event.target.elements.PCode.value,
@@ -57,5 +51,13 @@ class Home extends React.Component {
       )
   }
 }
+
+export const evaluationQuery = gql`
+  query evaluationQuery($UID: Int!, $PCode: String!) {
+    evaluationsFor(account: $UID, postalCode: $PCode) {
+      yearBuilt
+    }
+  }
+`
 
 export default withApollo(Home)
