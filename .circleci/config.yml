@@ -36,11 +36,6 @@ jobs:
       # Build files 
       - run: yarn build
 
-      # run server in background
-      - run: 
-          command: yarn start
-          background: true
-
   ui:
     docker:
       # specify the version you desire here
@@ -69,6 +64,11 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
+
+      # run server in background
+      - run: 
+          command: yarn start-server
+          background: true
       
       # Start client 
       - run: 
